@@ -8,8 +8,8 @@ int main(){
 	while (cin >> current){
 		++number_of_words;
 		if(prev == current){
-			cout << "Word Number: " << number_of_words << "\n";
-			cout << "Repeated Word: " << current << "\n";
+			cout << "Word Number: " << number_of_words << "\n"
+			    << "Repeated Word: " << current << "\n";
 		}
 		prev = current;
 	}
