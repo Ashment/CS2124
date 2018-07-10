@@ -2,7 +2,7 @@
 
 int main(){
 	double sDbl = 6666666666;
-	int sInt = 59;
+	int sInt = 242;
 	char sChar = 'x';
 
 	cout << "Now Converting Double to:\n";
