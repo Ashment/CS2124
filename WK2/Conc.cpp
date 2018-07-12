@@ -13,6 +13,7 @@ int main(){
 		v.push_back(curIn);	
 	}
 	
+    cout << "\n******************\n";
 	sort(v);
 
 	string prev=v[0];
