@@ -34,6 +34,7 @@ int main(){
 		tokens.push_back(t);
 	}
 
+    cout << "Type e is error token, type # is number token\n";
     cout << "TYPE | VALUE\n";
 
 	for(Token t : tokens){
