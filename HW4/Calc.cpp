@@ -5,7 +5,6 @@
 const string prompt = "> ";
 
 void Calculate(TokenStream ts){
-	
 
 	return;
 }
