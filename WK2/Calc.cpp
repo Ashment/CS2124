@@ -1,4 +1,5 @@
 #include "std_lib_facilities.h"
+#include "parser.h"
 
 class Token{
 	public: 
@@ -44,13 +45,65 @@ Token TokenStream::get(){
 	}
 }
 
-//NON-CLASS FUNCTIONS
-
 Vector<Token> tokens;
 TokenStream tokenStream;
 
-int main(){
+//DEBUG FUNCTIONS
+void PrintToken(Token t, string s){
+	cout << s << t.type << "|" << t.value << endl;
+	return;
+}
 
+//PARSER DEFINITIONS
+double expression(){
+	double left = term();
+	Token t = tokenStream.get();
+//	PrintToken(t, "EXPRESSION SCOPE TOKEN |> ");
+	while(true){
+		switch(t.type){
+			case '+':
+				left += term();
+				break;
+			case '-':
+				left -= term();
+				break;
+			default:
+				tokenStream.putback(t);
+				return left;
+		}
+		t = tokenStream.get();
+	}
+}
+double term(){
+	return primary();
+}
+double primary(){
+	Token t = tokenStream.get();
+//	PrintToken(t, "PRIMARY SCOPE TOKEN |> ");
+	return t.value;
+}
+
+int main(){	
+
+	try{
+		double val = 0.0;
+		while(cin){
+			Token t = tokenStream.get();
+//			PrintToken(t, "MAIN SCOPE TOKEN |> ");
+			if(t.type == 'q') break;
+			if(t.type == ';') 
+				cout << '=' << val << '\n';
+			else
+				tokenStream.putback(t);
+			val = expression();
+//			cout << "VAL RETURNED: " << val << endl;
+		}
+	}catch(std::error_code){
+		return 1;
+	}
+
+
+	/*STREAM AND TOKEN TESTING
 	for(Token t=tokenStream.get(); t.type != 'q'; t=tokenStream.get()){
 		tokens.push_back(t);
 	}
@@ -58,6 +111,7 @@ int main(){
 	for(Token t : tokens){
 		cout << t.type << "|" << t.value << "\n";
 	}
+	*/
 
 }
 
