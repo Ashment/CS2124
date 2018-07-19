@@ -29,16 +29,78 @@ double expression(TokenStream& tokenStream){
 		t = tokenStream.get();
 	}
 }
-
 double term(TokenStream& tokenStream){
 //	cout << "Calling term()" << endl;
-	return primary(tokenStream);
+	double left = primary(tokenStream);
+	Token t = tokenStream.get();
+
+	while(true){
+		switch(t.type){
+			case '*':
+			{
+				left *= primary(tokenStream);
+				t = tokenStream.get();
+				break;
+			}
+			case '/':
+			{
+				double divisor = primary(tokenStream);
+				if(divisor == 0)
+					error("Division by zero.");
+				left /= divisor;
+				t = tokenStream.get();
+				break;
+			}
+			case '%':
+			{
+				double next = primary(tokenStream);
+				if(next == 0)
+					error("Division by zero.");
+				left = fmod(left, next);
+				t = tokenStream.get();
+				break;
+			}
+			default:
+			{
+				tokenStream.putback(t);
+				return left;
+			}
+		}
+	}
 }
 
 
 double primary(TokenStream& tokenStream){
 //	cout << "Calling primary()" << endl;
 	Token t = tokenStream.get();
-//	PrintToken(t, "PRIMARY SCOPE TOKEN |> ");
+	switch(t.type){
+		case '(':
+		{
+			double next = expression(tokenStream);
+			t = tokenStream.get();
+			if(t.type != ')')
+				error("Closing bracket ')' expected but not found.");
+			return next;
+		}
+		case '#':
+		{
+			return t.value;
+		}
+		case '-':
+		{
+			return -primary(tokenStream);
+		}
+		case '+':
+		{
+			return primary(tokenStream);
+		}
+		default:
+		{
+			error("Primary acquisition failure.");
+		}
+
+
+	}
+
 	return t.value;
 }
