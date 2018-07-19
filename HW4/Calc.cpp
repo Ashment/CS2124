@@ -27,7 +27,7 @@ int main(){
 			}
 //			cout << "VAL RETURNED: " << val << endl;
 		}
-	}catch(std::error_code){
+	}catch(int e){
 		return 1;
 	}
 
