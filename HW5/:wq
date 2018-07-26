@@ -116,7 +116,7 @@ std::istream& operator >> (std::istream &in, Date &d){
 	in >> inY >> sep1 >> inM >> sep2 >> inD;
 	Date tDate{inY, inM, inD, true};
 	if(!tDate.isValid()){
-		cout << "Invalid date, date remains unchanges.\nUse format YYYY/MM/DD.\n";
+		cout << "Invalid date, date remains unchanges.\nUse format YYYY/MM/DD.";
 		return in;
 	}
 	d.setYear(inY);
