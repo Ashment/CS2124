@@ -4,6 +4,11 @@
 int mDays[13] = {0, 31,28,31,30,31,30,31,31,30,31,30,31};
 int mDaysLeap[13] = {0, 31,29,31,30,31,30,31,31,30,31,30,31};
 
+string mLookup[13] =
+{"invalid", "January", "February", "March", "April", 
+	"May", "June", "July", "August", "September", 
+	"October", "November", "December"};
+
 //CONSTRUCTOR
 Date::Date(int y, int m, int d, bool oV):yy{y}, mm{m}, dd{d}{
 	if(!oV){
@@ -58,6 +63,11 @@ int Date::getMonth(){
 	return mm;}
 int Date::getDay(){
 	return dd;}
+void Date::printFull(){
+	cout << mLookup[mm] << " " << dd 
+		<< ", " << yy << endl; 
+	return;
+}
 
 
 //UTILITY FUNCTIONS
@@ -124,10 +134,5 @@ std::istream& operator >> (std::istream &in, Date &d){
 	d.setDay(inD);
 	return in;
 }
-
-
-
-
-
 
 

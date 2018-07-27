@@ -23,6 +23,7 @@ class Date {
         void addYear(int n);
         void addMonth(int n);
         void addDay(int n);
+		void printFull();
 
         //UTILITY FUNCTIONS
         string toString() const;
