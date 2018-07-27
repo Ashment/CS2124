@@ -31,6 +31,8 @@ class Date {
         void ForceValid();
 
         //OPERATOR OVERLOADS
+		bool operator == (const Date &other);
+		bool operator != (const Date &other);
         friend ostream& operator << (ostream &out, const Date &d);
 		friend istream& operator >> (istream &in, Date &d);
 

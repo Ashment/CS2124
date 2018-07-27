@@ -5,7 +5,10 @@
 void PrintHelp();
 
 int main(){
-	Date today{1999, 5, 22, false};
+	Date tempDate{1999, 5, 22, false};
+	Date today{2000, 5, 22, false};
+
+	bool equalit = today == tempDate;
 	
 	cout << "Enter Initial Date(YYYY/MM/DD): ";
 	cin >> today;
@@ -58,6 +61,13 @@ int main(){
 				cout << "The full date is: " << endl;
 				today.printFull();
 				break;
+			case 'e':
+				cout << "Current date is: " << today;
+				cout << "Enter date to compare(YYYY/MM/DD): ";
+				cin >> tempDate;
+				equalit = tempDate==today;
+				cout << "EQUALITY TEST: " << equalit << endl;
+				break;
 
 			default:
 				cout << "Invalid Entry. Type 'h' for help.\n";
@@ -72,6 +82,7 @@ void PrintHelp(){
         << "Below are commands for interacting with Date.\n"
         << "h : help\n" << "p : print date\n" << "s : set date\n"
         << "d : add days\n" << "m : add months\n" << "y : add years\n"
+		<< "e : test equality\n"
 		<< "q : quit\n\n";
 	return;
 }

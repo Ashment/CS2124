@@ -116,6 +116,15 @@ void Date::ForceValid(){
 
 
 //OPERATOR OVERLOADS
+bool Date::operator == (const Date &other){
+	if(this->dd == other.dd && this->mm == other.mm && this->yy == other.yy){
+		return true;
+	}
+	return false;
+}
+bool Date::operator != (const Date &other){
+	return !(*this == other);
+}
 std::ostream& operator << (std::ostream &out, const Date &d){
     out << d.toString() << endl;
     return out;
