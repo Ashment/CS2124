@@ -2,6 +2,7 @@
 #include <array>
 #include <iostream>
 #include <fstream>
+#include "std_lib_facilities.h"
 using namespace std;
 
 struct InFormat {
@@ -32,24 +33,19 @@ int main(){
 	}
 	cout << endl;
 
-	array<InFormat, 24> fIn;
-	//Using array to not remove dependency on std_lib_facilities.h.
-	//Output will always have 24 rows because I'm too lazy to write a
-	//dynamic array. Pease understand.
-	size_t curIndex = 0;
+	vector<InFormat> fIn;
 	int curHr;
 	double curLow;
 	double curHigh;
 	char sep1;
 	char sep2;
 
-	while (ist >> curHr >> sep1 >> curLow >> sep2 >> curHigh && curIndex < fIn.size()){
-		fIn[curIndex] = InFormat{curHr, curLow, curHigh};
-		curIndex += 1;
+	while (ist >> curHr >> sep1 >> curLow >> sep2 >> curHigh){
+		fIn.push_back(InFormat{curHr, curLow, curHigh});
 	}
-	for (size_t i=0; i<fIn.size(); i++){
-		ost << '(' << fIn[i].hour << "\t"
-			<< fIn[i].low << "\t" << fIn[i].high
+	for (InFormat i : fIn){
+		ost << '(' << i.hour << "\t"
+			<< i.low << "\t" << i.high
 			<< ')' << endl;
 	}
 	return 0;
