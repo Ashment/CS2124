@@ -11,6 +11,7 @@ class Date {
 	public:
         //CONSTRUCTORS
 		Date(int yy, int mm, int dd, bool overrideValidity = false);
+		Date();
 
         //GETTERS AND SETTERS
 		void AddDay(int n);
@@ -27,7 +28,8 @@ class Date {
 
         //UTILITY FUNCTIONS
         string toString() const;
-        bool isValid();
+        bool isValid() const;
+		bool isLeap() const;
         void ForceValid();
 
         //OPERATOR OVERLOADS

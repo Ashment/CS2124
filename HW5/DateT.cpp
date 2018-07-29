@@ -5,7 +5,7 @@
 void PrintHelp();
 
 int main(){
-	Date tempDate{1999, 5, 22, false};
+	Date tempDate;
 	Date today{2000, 5, 22, false};
 
 	bool equalit = today == tempDate;

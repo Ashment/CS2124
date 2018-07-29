@@ -18,6 +18,11 @@ Date::Date(int y, int m, int d, bool oV):yy{y}, mm{m}, dd{d}{
 		}
 	}
 }
+Date::Date(){
+	yy = 1999;
+	mm = 1;
+	dd = 1;
+}
 
 
 //GETTERS AND SETTERS
@@ -78,12 +83,12 @@ string Date::toString() const{
     return outS;
 }
 
-bool Date::isValid(){
+bool Date::isValid() const{
    if(mm > 12){
        return false;
    }
    if(dd > mDays[mm]){
-        if(yy%4 == 0){
+        if(isLeap()){
             if(dd > mDaysLeap[mm])
                 return false;
         }else{
@@ -93,10 +98,15 @@ bool Date::isValid(){
    return true;
 }
 
+bool Date::isLeap() const{
+	if(yy%4 == 0) return true;
+	return false;
+}
+
 void Date::ForceValid(){
     while(!isValid()){
         if(dd > mDays[mm]){
-            if(yy%4 == 0){
+            if(isLeap()){
                 if(dd > mDaysLeap[mm]){
                     dd -= mDaysLeap[mm];
                     mm += 1;
