@@ -105,17 +105,17 @@ bool Date::isLeap() const{
 
 void Date::ForceValid(){
     while(!isValid()){
-        if(dd > mDays[mm]){
-            if(isLeap()){
-                if(dd > mDaysLeap[mm]){
-                    dd -= mDaysLeap[mm];
-                    mm += 1;
+        if(isLeap()){
+		if(dd > mDaysLeap[mm]){
+			dd -= mDaysLeap[mm];
+			mm += 1;
                 }
-            }else{
-				dd -= mDaysLeap[mm];
-				mm += 1;
-            }
-        }
+	}else{
+		if(dd > mDays[mm]){
+			dd -= mDays[mm];
+			mm += 1;
+		}
+	}
         if(mm > 12){
             yy += 1;
             mm -= 12;
