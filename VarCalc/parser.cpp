@@ -91,6 +91,28 @@ double term(TokenStream& tokenStream){
 	}
 }
 
+double expo(TokenStream& tokenStream){
+//	cout << "Calling expo()" << endl;
+	double left = primary(tokenStream);
+	Token t = tokenStream.get();
+
+	while(true){
+//		cout << "EXPO LOOP" << endl;
+		switch(t.type){
+			case '^':
+			{
+				left = pow(left, primary(tokenStream));
+				t = tokenStream.get();
+				break;
+			}
+			default:
+			{
+				tokenStream.putback(t);
+				return left;
+			}
+		}
+	}
+}
 
 double primary(TokenStream& tokenStream){
 //	cout << "Calling primary()" << endl;

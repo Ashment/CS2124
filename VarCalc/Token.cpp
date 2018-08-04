@@ -29,7 +29,7 @@ Token TokenStream::get(){
 		char ch;
 		cin >> ch;
 		switch(ch){
-			case ';': case 'q': case '(': case '+': case '-':
+			case ';': case 'q': case '(': case '+': case '-': case '^':
 			case '/': case '*': case ')': case '%': case '=':
 				outToken = Token(ch);
 //				PrintToken(outToken, "OutToken |> ");
