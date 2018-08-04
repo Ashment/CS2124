@@ -52,7 +52,7 @@ double expression(TokenStream& tokenStream){
 
 double term(TokenStream& tokenStream){
 //	cout << "Calling term()" << endl;
-	double left = primary(tokenStream);
+	double left = expo(tokenStream);
 	Token t = tokenStream.get();
 
 	while(true){
@@ -60,13 +60,13 @@ double term(TokenStream& tokenStream){
 		switch(t.type){
 			case '*':
 			{
-				left *= primary(tokenStream);
+				left *= expo(tokenStream);
 				t = tokenStream.get();
 				break;
 			}
 			case '/':
 			{
-				double divisor = primary(tokenStream);
+				double divisor = expo(tokenStream);
 				if(divisor == 0)
 					error("Division by zero.");
 				left /= divisor;
@@ -75,7 +75,7 @@ double term(TokenStream& tokenStream){
 			}
 			case '%':
 			{
-				double next = primary(tokenStream);
+				double next = expo(tokenStream);
 				if(next == 0)
 					error("Division by zero.");
 				left = fmod(left, next);
