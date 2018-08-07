@@ -29,7 +29,7 @@ Token TokenStream::get(){
 		char ch;
 		cin >> ch;
 		switch(ch){
-			case ';': case 'q': case '(': case '+': case '-':
+			case ';': case 'q': case '(': case '+': case '-': case '^':
 			case '/': case '*': case ')': case '%': case '=':
 				outToken = Token(ch);
 //				PrintToken(outToken, "OutToken |> ");
@@ -52,6 +52,8 @@ Token TokenStream::get(){
 					cin.putback(ch);
 //					cout << "VAR NAME | " << vName << endl;
 					return Token{cName, vName};
+				}else if(ch == '['){
+
 				}
 		}
 	return eToken;

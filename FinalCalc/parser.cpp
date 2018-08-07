@@ -52,7 +52,7 @@ double expression(TokenStream& tokenStream){
 
 double term(TokenStream& tokenStream){
 //	cout << "Calling term()" << endl;
-	double left = primary(tokenStream);
+	double left = expo(tokenStream);
 	Token t = tokenStream.get();
 
 	while(true){
@@ -60,13 +60,13 @@ double term(TokenStream& tokenStream){
 		switch(t.type){
 			case '*':
 			{
-				left *= primary(tokenStream);
+				left *= expo(tokenStream);
 				t = tokenStream.get();
 				break;
 			}
 			case '/':
 			{
-				double divisor = primary(tokenStream);
+				double divisor = expo(tokenStream);
 				if(divisor == 0)
 					error("Division by zero.");
 				left /= divisor;
@@ -75,7 +75,7 @@ double term(TokenStream& tokenStream){
 			}
 			case '%':
 			{
-				double next = primary(tokenStream);
+				double next = expo(tokenStream);
 				if(next == 0)
 					error("Division by zero.");
 				left = fmod(left, next);
@@ -91,6 +91,29 @@ double term(TokenStream& tokenStream){
 	}
 }
 
+double expo(TokenStream& tokenStream){
+//	cout << "Calling expo()" << endl;
+	double left = primary(tokenStream);
+	Token t = tokenStream.get();
+
+	while(true){
+//		cout << "EXPO LOOP" << endl;
+		switch(t.type){
+			case '^':
+			{
+//				cout << "GOT EXPO" << endl;
+				left = pow(left, primary(tokenStream));
+				t = tokenStream.get();
+				break;
+			}
+			default:
+			{
+				tokenStream.putback(t);
+				return left;
+			}
+		}
+	}
+}
 
 double primary(TokenStream& tokenStream){
 //	cout << "Calling primary()" << endl;
@@ -121,8 +144,6 @@ double primary(TokenStream& tokenStream){
 			error("Primary acquisition failure.");
 		}
 
-
 	}
-
 	return t.value;
 }
