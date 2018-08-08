@@ -139,6 +139,10 @@ double primary(TokenStream& tokenStream){
 		{
 			return primary(tokenStream);
 		}
+        case cName:
+        {
+            return get_value(t.name);
+        }
 		default:
 		{
 			error("Primary acquisition failure.");
