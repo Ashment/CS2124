@@ -13,15 +13,15 @@ void Println(string s){
 
 //TOKEN STREAM FUNCTIONS
 void TokenStream::putback(Token t){
-	buffer = t;
-	full = true;
+	buffer.push_back(t);
 }
 
 Token TokenStream::get(){
-	if(full){
-		full = false;
+	if(buffer.size() > 0){
+        Token t = buffer.back();
+        buffer.pop_back();
 //		PrintToken(buffer, "Out from buffer |> ");
-		return buffer;
+		return t;
 	}else{	
 		Token eToken = Token{'e', 0};
 		Token outToken('e');

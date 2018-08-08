@@ -32,6 +32,5 @@ class TokenStream{
 		Token get();
 		void putback(Token t);
 	private:
-		Token buffer = Token('i', 2003);
-		bool full{false};
+        vector<Token> buffer;
 };

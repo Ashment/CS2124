@@ -4,8 +4,10 @@ vector<variable> var_table;
 
 double get_value(string s){
 	for (variable var : var_table)
-		if(var.name == s) return var.value;
-	
+		if(var.name == s){ 
+            //cout << "GET VALUE... " << s << " | " << var.value << "\n";
+            return var.value;
+        }
 	return 0;
 }
 
