@@ -16,6 +16,8 @@ map<const string, function<double(double)> > dispTable {
     {"log", [](double i) {return log(i); }},
     {"log2", [](double i) {return log2(i); }},
     {"log10", [](double i) {return log10(i); }},
+    {"e", [](double i) {return pow(M_E, i); }},
+    {"sqrt", [](double i){return sqrt(i); }}
 };
 
 double exec_func(string fname, double arg){

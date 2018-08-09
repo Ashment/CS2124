@@ -16,7 +16,7 @@ double statement(TokenStream& tokenStream){
 			set_value(vName, eRight);
 			return eRight;
 		}else if(next.type == ';'){
-			tokenStream.putback(next);
+            tokenStream.putback(next);
 			return get_value(vName);
 		}else{
             tokenStream.putback(next);
@@ -27,15 +27,12 @@ double statement(TokenStream& tokenStream){
 }
 
 double expression(TokenStream& tokenStream){
-	cout << "Calling expression()" << endl;
 	double left = term(tokenStream);
 	Token t = tokenStream.get();
-	cout << "Initial left |> " << left << endl;
 	while(true){
 //		cout << "EXPRESSION LOOP" << endl;
 		switch(t.type){
 			case '+':
-				cout << "Found +" << endl;
 				left += term(tokenStream);
 				break;
 			case '-':
@@ -45,7 +42,6 @@ double expression(TokenStream& tokenStream){
 			default:
 //				cout << "Returning left" << endl;
 				tokenStream.putback(t);
-				cout << "RETURNING FROM EXPRESSION |> " << left << endl;
 				return left;
 		}
 		t = tokenStream.get();
@@ -97,7 +93,6 @@ double term(TokenStream& tokenStream){
 double expo(TokenStream& tokenStream){
 //	cout << "Calling expo()" << endl;
 	double left = primary(tokenStream);
-    cout << "Expo received value: " << left << endl;
 	Token t = tokenStream.get();
 
 	while(true){

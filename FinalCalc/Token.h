@@ -31,6 +31,7 @@ class TokenStream{
 	public:
 		Token get();
 		void putback(Token t);
+        void clearbuffer();
 	private:
         vector<Token> buffer;
 };

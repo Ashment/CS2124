@@ -16,6 +16,10 @@ void TokenStream::putback(Token t){
 	buffer.push_back(t);
 }
 
+void TokenStream::clearbuffer(){
+    buffer.clear();
+}
+
 Token TokenStream::get(){
 	if(buffer.size() > 0){
         Token t = buffer.back();
@@ -30,7 +34,7 @@ Token TokenStream::get(){
 		cin >> ch;
 		switch(ch){
 			case ';': case 'q': case '(': case '+': case '-': case '^':
-			case '/': case '*': case ')': case '%': case '=':
+            case '/': case '*': case ')': case '%': case '=': case 'h':
 				outToken = Token(ch);
 //				PrintToken(outToken, "OutToken |> ");
 				return outToken;
